@@ -27,7 +27,7 @@
         }
     }
 </script>
-<h1>quizz {currentIndex}</h1>
+<h1>quiz {currentIndex}</h1>
 {#if currentIndex < allItems.length}
 {#each [allItems[currentIndex]] as currentItem(currentItem.prompt)}
 <div in:fly={flyInParams} out:fly={flyOutParams} animate:flip class="currentItem">
