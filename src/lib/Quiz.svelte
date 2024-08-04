@@ -17,7 +17,7 @@
 	const flyInParams = { x: -flyX, duration: flyDuration };
 	const flyOutParams = { x: flyX, duration: flyDuration };
 
-	const onFinish = (e: any) => {
+	const onFinish = (e: CustomEvent<{ success: boolean }>) => {
 		currentIndex += 1;
 		if (e.detail.success) {
 			nSuccesses += 1;

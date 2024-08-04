@@ -6,7 +6,7 @@
 	}
 	export let details: ItemDetails;
 	let currentInput = '';
-	let dispatch = createEventDispatcher();
+	let dispatch = createEventDispatcher<{ finished: { success: boolean } }>();
 	// let updates:any[] = []
 	let additionalClass = '';
 	// $:
