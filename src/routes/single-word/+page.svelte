@@ -7,4 +7,13 @@
 
 </script>
 
-<Quiz allItems={items}/>
+<div class="quiz">
+    <Quiz allItems={items}/>
+</div>
+
+<style>
+    .quiz {
+        margin: 0 auto;
+        width: fit-content;
+    }
+</style>
