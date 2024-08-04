@@ -3,7 +3,6 @@
     
     export let prompt;
     let currentInput = '';
-    const dispatcher = createEventDispatcher();
 </script>
 
 <div class="box">
