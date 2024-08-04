@@ -1,31 +1,50 @@
-<script>
-	import { onMount } from 'svelte';
+<script lang='ts'>
 	import { fly } from 'svelte/transition';
     import { flip } from 'svelte/animate';
 	import SingleItem from './SingleItem.svelte';
-    let keys = [0]
-    // let currentKey = 0
-    onMount(() => {
-        const intervalHandle = setInterval(() => {
-            // currentKey = currentKey + 1;
-            keys = [keys[0] + 1]
-        }, 2_000)
-        return () => {
-            clearInterval(intervalHandle)
-        }
-    })
+    interface ItemDetails {
+        prompt: string
+        answer: string
+    }
+    export let allItems: Array<ItemDetails>
+    
+    let currentIndex = 0
+    let nSuccesses = 0
+    let nFailures = 0
+    
+
     const flyX = -200
     const flyDuration = 500
     const flyInParams = {x: -flyX, duration: flyDuration}
     const flyOutParams = {x: flyX, duration: flyDuration}
+
+    const onFinish = (e: any) => {
+        currentIndex += 1
+        if (e.detail.success) {
+            nSuccesses += 1
+        } else {
+            nFailures += 1
+        }
+    }
 </script>
-<h1>quizz {keys[0]}</h1>
-{#each keys as currentKey(currentKey)}
+<h1>quizz {currentIndex}</h1>
+{#if currentIndex < allItems.length}
+{#each [allItems[currentIndex]] as currentItem(currentItem.prompt)}
 <div in:fly={flyInParams} out:fly={flyOutParams} animate:flip class="currentItem">
-    <SingleItem prompt={currentKey.toString()}></SingleItem>
+    <SingleItem details={currentItem} on:finished={onFinish}></SingleItem>
 </div>
 
 {/each}
+
+{:else}
+<p> no more quiz items</p>
+{/if}
+<div>
+    Successes: {nSuccesses}
+    <br/>
+    Fails: {nFailures}
+</div>
+
 <style>
     .currentItem {
         display: inline-block;
