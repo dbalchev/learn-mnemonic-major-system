@@ -4,7 +4,7 @@
 		prompt: string;
 		answer: string;
 	}
-	let dispatchedFinishes: Array<ItemDetails> = [];
+	let dispatchedFinishes: Array<{success: boolean}> = [];
 </script>
 
 <SingleItem
