@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { createEventDispatcher } from 'svelte';
+    import { createEventDispatcher, onMount } from 'svelte';
     interface ItemDetails {
         prompt: string
         answer: string
@@ -24,13 +24,17 @@
             additionalClass = success ? 'success' : 'fail'
         }
     }
+    let inputRef: HTMLInputElement;
+    onMount(() => {
+        inputRef.focus()
+    })
 </script>
 
 <div class="box {additionalClass}">
     <h1>{details.prompt}</h1>
-    <input type="text" bind:value={currentInput} />
+    <input type="text" bind:value={currentInput} bind:this={inputRef}/>
     <br />
-    {currentInput}
+    <!-- {currentInput} -->
     <!-- {#each updates as update}
         {JSON.stringify(update)}
     {/each} -->
