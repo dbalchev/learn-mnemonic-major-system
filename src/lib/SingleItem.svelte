@@ -32,7 +32,7 @@
 
 <div class="box {additionalClass}">
     <h1>{details.prompt}</h1>
-    <input type="text" bind:value={currentInput} bind:this={inputRef}/>
+    <input type="text" pattern="[0-9]*" bind:value={currentInput} bind:this={inputRef}/>
     <br />
     <!-- {currentInput} -->
     <!-- {#each updates as update}
