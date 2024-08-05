@@ -1,6 +1,9 @@
 import { expect, test } from '@playwright/test';
 
-test('home page has expected h1', async ({ page }) => {
+test('home page has a link to single word quiz', async ({ page }) => {
 	await page.goto('/');
-	await expect(page.locator('h1')).toBeVisible();
+	const singleWordQuizLocator = page.getByText('Single Word quiz');
+	await expect(singleWordQuizLocator).toBeVisible();
+	await singleWordQuizLocator.click();
+	await expect(page.getByText('quiz 0')).toBeVisible();
 });
