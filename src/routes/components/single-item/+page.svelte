@@ -1,10 +1,6 @@
 <script lang="ts">
 	import SingleItem from '$lib/SingleItem.svelte';
-	interface ItemDetails {
-		prompt: string;
-		answer: string;
-	}
-	let dispatchedFinishes: Array<{success: boolean}> = [];
+	let dispatchedFinishes: Array<{ success: boolean }> = [];
 </script>
 
 <SingleItem
