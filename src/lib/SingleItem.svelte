@@ -7,21 +7,14 @@
 	export let details: ItemDetails;
 	let currentInput = '';
 	let dispatch = createEventDispatcher<{ finished: { success: boolean } }>();
-	// let updates:any[] = []
-	let additionalClass = '';
-	// $:
+	let finishedState = '';
 	$: {
-		// updates = updates.concat([{
-		//     'new': currentInput,
-		//     'currentInput.length': currentInput.length,
-		//     'details.answer.length': details.answer.length,
-		// }])
 		if (currentInput.length >= details.answer.length) {
 			const success = currentInput === details.answer;
 			dispatch('finished', {
 				success: success
 			});
-			additionalClass = success ? 'success' : 'fail';
+			finishedState = success ? 'success' : 'fail';
 		}
 	}
 	let inputRef: HTMLInputElement;
@@ -30,14 +23,10 @@
 	});
 </script>
 
-<div class="box {additionalClass}">
+<div class="box" class:success={finishedState === 'success'} class:fail={finishedState === 'fail'}>
 	<h1>{details.prompt}</h1>
 	<input type="text" pattern="[0-9]*" bind:value={currentInput} bind:this={inputRef} />
 	<br />
-	<!-- {currentInput} -->
-	<!-- {#each updates as update}
-        {JSON.stringify(update)}
-    {/each} -->
 </div>
 
 <style>
