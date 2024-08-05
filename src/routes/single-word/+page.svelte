@@ -8,13 +8,4 @@
 	const items = shuffledPegs.map((peg) => ({ prompt: peg.word, answer: peg.digits }));
 </script>
 
-<div class="quiz">
-	<Quiz allItems={items} />
-</div>
-
-<style>
-	.quiz {
-		margin: 0 auto;
-		width: fit-content;
-	}
-</style>
+<Quiz allItems={items} />
