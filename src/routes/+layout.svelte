@@ -1,7 +1,3 @@
-<script>
-	export const prerender = true;
-</script>
-
 <div class="quiz">
 	<slot />
 </div>
