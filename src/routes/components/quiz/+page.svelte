@@ -1,14 +1,15 @@
 <script>
 	import Quiz from '$lib/Quiz.svelte';
-	// let currentItem = 0;
-	// onMount(() => {
-	//     const intervalHandle = setInterval(() => {
-	//         currentItem += 1
-	//     }, 2_000)
-	//     return () => {
-	//         clearInterval(intervalHandle)
-	//     }
-	// })
+	import { onMount } from 'svelte';
+	let currentItem = 0;
+	onMount(() => {
+		const intervalHandle = setInterval(() => {
+			currentItem = (currentItem + 1) % 2;
+		}, 2_000);
+		return () => {
+			clearInterval(intervalHandle);
+		};
+	});
 	let items = [
 		{
 			prompt: 'first',
@@ -21,4 +22,4 @@
 	];
 </script>
 
-<Quiz allItems={items}></Quiz>
+<Quiz allItems={[items[currentItem]]}></Quiz>
