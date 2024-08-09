@@ -22,4 +22,4 @@
 	];
 </script>
 
-<Quiz allItems={[items[currentItem]]}></Quiz>
+<Quiz allItems={items} currentIndex={currentItem}></Quiz>
